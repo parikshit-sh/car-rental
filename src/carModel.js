@@ -1,10 +1,10 @@
 // Import images directly
-import modelS from 'src/assets/cars/model_S.png';
-import model3 from 'src/assets/cars/tesla_model3.png';
-import cybertruck from 'src/assets/cars/cybertruck.png';
-import modelX from 'src/assets/cars/model_X.png';
-import nio from 'src/assets/cars/nio.png';
-import modelY from 'src/assets/cars/tesla_modely.png';
+import modelS from '/src/assets/cars/model_S.png';
+import model3 from '/src/assets/cars/tesla_model3.png';
+import cybertruck from '/src/assets/cars/cybertruck.png';
+import modelX from '/src/assets/cars/model_X.png';
+import nio from '/src/assets/cars/nio.png';
+import modelY from '/src/assets/cars/tesla_modely.png';
 
 export const carModels = [
   {
