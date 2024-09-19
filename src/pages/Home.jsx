@@ -11,6 +11,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { horizontalLoop } from "../animate";
 import About from "../components/About";
 import Form from "../components/Form";
+import hero from "/src/assets/hero-2.png";
+import mob_hero from "/src/assets/mobile_hero.png"
 
 const Home = () => {
   const [selectedCar, setSelectedCar] = useState(carModels["0"]); // To store the selected car details
@@ -102,13 +104,13 @@ const Home = () => {
           </div>
           <picture className="hero-img pb-36">
             <img
-              src="/src/assets/hero-2.png"
+              src={hero}
               alt="hero-image"
               className="absolute right-0 lg:top-32 hidden lg:block md:block"
             />
            
           </picture>
-          <img src="/src/assets/mobile_hero.png" className="mob_hero hidden" alt=""/>
+          <img src={mob_hero} className="mob_hero hidden" alt=""/>
         </Box>
       </div>
       <div className="scrolling-text">
