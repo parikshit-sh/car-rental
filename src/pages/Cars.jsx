@@ -1,6 +1,6 @@
 //Cars.jsx
 import { Link } from "react-router-dom";
-import {CARS} from "../model";
+import {carModels} from "../carModel";
 import { motion } from "framer-motion";
 
 const Cars = () => {
@@ -33,7 +33,7 @@ const Cars = () => {
             
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 pt-52">
         
-        {CARS.map((car, index) => (
+        {carModels.map((car, index) => (
           <motion.div key={index} className="bg-white rounded-lg shadow-md p-4 " 
           initial="hidden"
           whileInView="visible"
