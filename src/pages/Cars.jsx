@@ -31,16 +31,16 @@ const Cars = () => {
                           viewport={{ once: true, amount: 0.6 }}>
           <Link to="/home"> <span className="text-black text-lg font-semibold pl-10 hover:text-[#0069D2]" >Home</span></Link>/Vehicle Models</motion.h2>
             
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 pt-52">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-0 md:p-4 lg:p-4 pt-52">
         
         {carModels.map((car, index) => (
-          <motion.div key={index} className="bg-white rounded-lg shadow-md p-4 " 
+          <motion.div key={index} className="bg-white rounded-lg shadow-md p-2 md:p-4 lg:p-4 " 
           initial="hidden"
           whileInView="visible"
           variants={fadeInVariant}
           viewport={{ once: true, amount: 0.4 }}>
             
-            <img src={car.image} alt={car.name} className="w-full h-44 object-cover  rounded-md" />
+            <img src={car.image} alt={car.name} className="w-full h-44 object-contain  rounded-md" />
             <h2 className="text-lg font-semibold mt-2">{car.name}</h2>
             <p className="text-gray-500 text-sm">{car.batteryChargeTime}</p>
             <p className="text-gray-500 text-sm">{car.range}</p>
