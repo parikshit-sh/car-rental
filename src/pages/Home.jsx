@@ -101,7 +101,7 @@ const Home = () => {
             </motion.div>
           </div>
           <picture className="hero-img pb-36">
-            <motion.img
+            <img
               src="/src/assets/hero-2.png"
               alt="hero-image"
               className="absolute right-0 lg:top-32 hidden lg:block md:block"

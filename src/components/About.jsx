@@ -7,7 +7,7 @@ const About = () => {
         <div className="max-w-5xl grid lg:grid-cols-2 gap-10 items-center">
           <div className="lg:ml-36 text-center lg:text-left">
             <h2 className="text-[#121212] text-4xl lg:text-6xl font-bold">
-              Features
+             About
             </h2>
             <p
               className="text-gray-600 text-sm lg:text-base mt-4 max-w-md mx-auto 
