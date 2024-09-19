@@ -50,3 +50,9 @@ export const carModels = [
     acceleration: "0-60 mph in 3.5 sec with boost engaged.",
   },
 ];
+export const locations = [
+  "New York City",
+  "Chicago",
+  "Miami",
+  "Los Angeles"
+];
