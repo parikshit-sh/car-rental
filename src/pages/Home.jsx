@@ -105,7 +105,6 @@ const Home = () => {
               src="/src/assets/hero-2.png"
               alt="hero-image"
               className="absolute right-0 lg:top-32 hidden lg:block md:block"
-              loading="eager"
             />
            
           </picture>
