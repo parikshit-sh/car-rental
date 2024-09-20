@@ -29,7 +29,8 @@ const Cars = () => {
                           whileInView="visible"
                           variants={fadeInVariant}
                           viewport={{ once: true, amount: 0.6 }}>
-          <Link to="/home"> <span className="text-black text-lg font-semibold pl-10 hover:text-[#0069D2]" >Home</span></Link>/Vehicle Models</motion.h2>
+          <Link to="/home"> <span className="text-black text-lg font-semibold pl-10
+           hover:text-[#0069D2]" >Home</span></Link>/Vehicle Models</motion.h2>
             
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-0 md:p-4 lg:p-4 pt-52">
         
@@ -51,7 +52,8 @@ const Cars = () => {
               <span className="text-gray-600 ml-2">({car.rating})</span>
             </div>
             <p className="text-green-500 font-semibold mt-2">{car.dailyCharge}</p>
-           <Link to="/home"><button className="mt-4 bg-[#0069D2] text-white px-4 py-2 rounded-full hover:bg-blue-600 w-full lg:w-1/2 md:w-1/2">
+           <Link to="/home"><button className="mt-4 bg-[#0069D2] text-white px-4 
+           py-2 rounded-full hover:bg-blue-700 transition-all duration-200 w-full lg:w-1/2 md:w-1/2">
               Book Now
             </button></Link> 
           </motion.div>

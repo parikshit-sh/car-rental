@@ -59,7 +59,7 @@ const Navbar = () => {
           </Link>
           <li className="hover:text-[#0069D2] cursor-pointer transition ease-out" onClick={closeMenu}>Help</li>
           <li>
-            <a href="#" className="btn" onClick={closeMenu}>Download</a>
+            <a href="#" className="btn hover:bg-blue-700 ransition-all duration-200" onClick={closeMenu}>Download</a>
           </li>
         </ul>
         <div className={`ham__menu ${isActive ? 'active' : ''}`} onClick={handleMenuToggle}>

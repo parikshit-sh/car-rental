@@ -142,7 +142,7 @@ const Form = () => {
             <FormGroup className="w-full p-8">
               <button
                 type="submit"
-                className="bg-[#0069D2] text-white px-2 py-4 w-full rounded-full text-center"
+                className="bg-[#0069D2] hover:bg-blue-700 transition-all duration-200 text-white px-2 py-4 w-full rounded-full text-center"
               >
                 Book Now
               </button>
