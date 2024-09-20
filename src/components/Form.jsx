@@ -1,23 +1,73 @@
 import { FormGroup } from "@mui/material";
 import "../index.css";
-import { useState } from "react"; // Use state to handle selected car details
+import { useState } from "react";
 import { carModels, locations } from "../carModel";
+import { motion, AnimatePresence } from "framer-motion";
 
 
 const Form = () => {
-    const [selectedCar, setSelectedCar] = useState(carModels["0"]); // To store the selected car details
-    const [pickupLocation, setPickupLocation] = useState(0);
-    const [dropoffLocation, setDropoffLocation] = useState(0);
-    const handleCarChange = (e) => {
-        const carName = e.target.value;
-        const car = carModels.find((model) => model.name === carName); // Find the selected car details
-        setSelectedCar(car);
-      };
-    
+  const [selectedCar, setSelectedCar] = useState(carModels[0]);
+  const [pickupLocation, setPickupLocation] = useState("");
+  const [dropoffLocation, setDropoffLocation] = useState("");
+  const [showSecondForm, setShowSecondForm] = useState(false);
+  const [reservationDetails, setReservationDetails] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    email: "",
+    phoneNumber: "",
+    age: "",
+    city: "",
+    zipCode: "",
+  });
+  const formVariants = {
+    hidden: { opacity: 0, y: -50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    exit: { opacity: 0, y: 50, transition: { duration: 0.5 } },
+  };
+  const [confirmationMessage, setConfirmationMessage] = useState("");
+
+  const handleCarChange = (e) => {
+    const carName = e.target.value;
+    const car = carModels.find((model) => model.name === carName);
+    setSelectedCar(car);
+  };
+
+  const handleFirstFormSubmit = (e) => {
+    e.preventDefault();
+    if (selectedCar && pickupLocation && dropoffLocation) {
+      setShowSecondForm(true);
+    }
+  };
+
+  const handleSecondFormChange = (e) => {
+    const { name, value } = e.target;
+    setReservationDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+  };
+
+  const handleSecondFormSubmit = (e) => {
+    e.preventDefault();
+    setConfirmationMessage("Check your email to confirm order.");
+    setShowSecondForm(false);
+  };
+
+  // Helper function to format the input keys for headings and placeholders
+  const formatHeading = (key) => {
+    return key
+      .replace(/([A-Z])/g, " $1") // Insert a space before each uppercase letter
+      .replace(/^./, (str) => str.toUpperCase()); // Capitalize the first letter
+  };
+
   return (
     <>
-     <section className="flex justify-center pt-32 items-center">
-        <form className="bg-white shadow-xl rounded-2xl p-8">
+      <section className="flex justify-center pt-32 items-center">
+        <form
+          className="bg-white shadow-xl rounded-2xl p-8"
+          onSubmit={handleFirstFormSubmit}
+        >
           <h1 className="text-2xl font-bold p-4">Book a Car</h1>
           <div className="grid lg:grid-cols-3 md:grid-cols-2">
             {/* Select Your Car */}
@@ -79,27 +129,82 @@ const Form = () => {
 
             {/* Pick-Up Date */}
             <FormGroup className="w-full p-4">
-              <h1 className="font-semibold p-2">Pick-Up</h1>
+              <h1 className="font-semibold p-2">Pick-Up Date</h1>
               <input className="text-gray-600" type="date" />
             </FormGroup>
 
             {/* Drop-Off Date */}
             <FormGroup className="w-full p-4">
-              <h1 className="font-semibold p-2">Drop-Off</h1>
+              <h1 className="font-semibold p-2">Drop-Off Date</h1>
               <input className="text-gray-600" type="date" />
             </FormGroup>
+
             <FormGroup className="w-full p-8">
               <button
-                href="#book_car"
+                type="submit"
                 className="bg-[#0069D2] text-white px-2 py-4 w-full rounded-full text-center"
               >
                 Book Now
               </button>
             </FormGroup>
           </div>
+          {confirmationMessage && (
+            <p className="text-green-500">{confirmationMessage}</p>
+          )}
         </form>
-      </section></>
-  )
-}
+      </section>
 
-export default Form
+      {/* Second Form for Reservation Details */}
+      <AnimatePresence>
+        {showSecondForm && (
+          <motion.section
+            className="flex justify-center pt-8 items-center max-w-4xl mx-auto p-4"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={formVariants}
+          >
+            <form
+              className="bg-white shadow-xl rounded-2xl p-8"
+              onSubmit={handleSecondFormSubmit}
+            >
+              <h1 className="text-2xl font-bold p-4">COMPLETE RESERVATION</h1>
+              <h2 className="text-lg font-semibold p-4">{selectedCar.name}</h2>
+              <img
+                src={selectedCar.image}
+                alt={selectedCar.name}
+                className="w-full object-contain mb-4 rounded-lg"
+              />
+              <div className="grid lg:grid-cols-2 md:grid-cols-1">
+                {Object.keys(reservationDetails).map((key) => (
+                  <FormGroup key={key} className="w-full p-4">
+                    <h1 className="font-semibold p-2">{formatHeading(key)}</h1>
+                    <input
+                      className="w-full px-4 py-2 border border-gray-300 rounded text-gray-600 focus:outline-none focus:border-blue-500 transition-all duration-200"
+                      type={key === "email" ? "email" : "text"}
+                      name={key}
+                      placeholder={`Enter your ${formatHeading(key)}`}
+                      value={reservationDetails[key]}
+                      onChange={handleSecondFormChange}
+                      required
+                    />
+                  </FormGroup>
+                ))}
+                <FormGroup className="w-full p-8">
+                  <button
+                    type="submit"
+                    className="bg-[#0069D2] text-white px-2 py-4 w-full rounded-full text-center hover:bg-blue-700 transition-all duration-200"
+                  >
+                    RESERVE NOW
+                  </button>
+                </FormGroup>
+              </div>
+            </form>
+          </motion.section>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
+
+export default Form;
