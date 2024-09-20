@@ -1,9 +1,8 @@
 import { FormGroup } from "@mui/material";
 import "../index.css";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { carModels, locations } from "../carModel";
 import { motion, AnimatePresence } from "framer-motion";
-
 
 const Form = () => {
   const [selectedCar, setSelectedCar] = useState(carModels[0]);
@@ -20,12 +19,17 @@ const Form = () => {
     city: "",
     zipCode: "",
   });
+  const [confirmationMessage, setConfirmationMessage] = useState("");
+
+  // Refs to scroll to forms
+  const mainFormRef = useRef(null);
+  const secondFormRef = useRef(null);
+
   const formVariants = {
     hidden: { opacity: 0, y: -50 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
     exit: { opacity: 0, y: 50, transition: { duration: 0.5 } },
   };
-  const [confirmationMessage, setConfirmationMessage] = useState("");
 
   const handleCarChange = (e) => {
     const carName = e.target.value;
@@ -37,6 +41,11 @@ const Form = () => {
     e.preventDefault();
     if (selectedCar && pickupLocation && dropoffLocation) {
       setShowSecondForm(true);
+
+      // Scroll down to the reservation form when it opens
+      setTimeout(() => {
+        secondFormRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
     }
   };
 
@@ -52,6 +61,11 @@ const Form = () => {
     e.preventDefault();
     setConfirmationMessage("Check your email to confirm order.");
     setShowSecondForm(false);
+
+    // Scroll back up to the main form when the second form is submitted
+    setTimeout(() => {
+      mainFormRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   };
 
   // Helper function to format the input keys for headings and placeholders
@@ -63,7 +77,10 @@ const Form = () => {
 
   return (
     <>
-      <section className="flex justify-center pt-32 items-center">
+      <section
+        className="flex justify-center pt-32 items-center"
+        ref={mainFormRef}
+      >
         <form
           className="bg-white shadow-xl rounded-2xl p-8"
           onSubmit={handleFirstFormSubmit}
@@ -158,6 +175,7 @@ const Form = () => {
       <AnimatePresence>
         {showSecondForm && (
           <motion.section
+            ref={secondFormRef}
             className="flex justify-center pt-8 items-center max-w-4xl mx-auto p-4"
             initial="hidden"
             animate="visible"
