@@ -13,6 +13,7 @@ import About from "../components/About";
 import Form from "../components/Form";
 import hero from "/src/assets/hero-2.png";
 import mob_hero from "/src/assets/mobile_hero.png"
+import download_app from "/src/assets/download.png"
 
 const Home = () => {
   const [selectedCar, setSelectedCar] = useState(carModels["0"]); // To store the selected car details
@@ -252,7 +253,7 @@ const Home = () => {
         </div>
       </Box>
       <div className="flex justify-center items-center">
-        <img src="/src/assets/download.png" alt="" className="w-96" />
+        <img src={download_app} alt="" className="w-96" />
       </div>
     </>
   );
