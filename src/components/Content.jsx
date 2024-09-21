@@ -75,8 +75,7 @@ const Content = () => {
   
         {/* Footer Note Section */}
         <div className="col-span-full text-center mt-6 text-xs text-gray-500 border-t border-gray-700 pt-4">
-          <p>© 2024 Rentals. All rights reserved.</p>
-          <p className="mt-2">Designed with ❤️ by Rentals Team.</p>
+          <p className="text-white pt-4">© 2024 Rentals. All rights reserved.</p>
         </div>
       </div>
     );
