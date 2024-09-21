@@ -42,7 +42,7 @@ const Navbar = () => {
           <Link to="/cars" onClick={closeMenu}>
             <li>Cars</li>
           </Link>
-          <li onClick={closeMenu}>Help</li>
+          <li onClick={closeMenu}>Contact</li>
           <li onClick={closeMenu}>Download</li>
         </ul>
       </div>
@@ -63,7 +63,7 @@ const Navbar = () => {
           <Link to="/cars" onClick={closeMenu}>
             <li className="hover:text-[#0069D2] cursor-pointer transition ease-out">Cars</li>
           </Link>
-          <li className="hover:text-[#0069D2] cursor-pointer transition ease-out" onClick={closeMenu}>Help</li>
+          <li className="hover:text-[#0069D2] cursor-pointer transition ease-out" onClick={closeMenu}>Contact</li>
           <li>
             <a href="#" className="btn hover:bg-blue-700 ransition-all duration-200" onClick={closeMenu}>Download</a>
           </li>
