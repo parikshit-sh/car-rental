@@ -36,7 +36,9 @@ const Navbar = () => {
           <Link to="/home" onClick={closeMenu}>
             <li>Home</li>
           </Link>
-          <li onClick={closeMenu}>About</li>
+          <Link to="/about" onClick={closeMenu}>
+  <li className="hover:text-[#0069D2] cursor-pointer transition ease-out">About</li>
+</Link>
           <Link to="/cars" onClick={closeMenu}>
             <li>Cars</li>
           </Link>
@@ -51,9 +53,13 @@ const Navbar = () => {
         </div>
         <ul className="nav__link">
           <Link to="/home" onClick={closeMenu}>
-            <li className="hover:text-[#0069D2] cursor-pointer transition ease-out">Home</li>
+            <li className="hover:text-[#0069D2] cursor-pointer transition ease-out"><a href="#hero">Home</a></li>
           </Link>
-          <li className="hover:text-[#0069D2] cursor-pointer transition ease-out" onClick={closeMenu}>About</li>
+          
+          <Link to="/about" onClick={closeMenu}>
+  <li className="hover:text-[#0069D2] cursor-pointer transition ease-out">About</li>
+</Link>
+
           <Link to="/cars" onClick={closeMenu}>
             <li className="hover:text-[#0069D2] cursor-pointer transition ease-out">Cars</li>
           </Link>

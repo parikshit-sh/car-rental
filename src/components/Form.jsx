@@ -1,6 +1,6 @@
 import { FormGroup } from "@mui/material";
 import "../index.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { carModels, locations } from "../carModel";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -31,6 +31,15 @@ const Form = () => {
     exit: { opacity: 0, y: 50, transition: { duration: 0.5 } },
   };
 
+  useEffect (() => {
+    if (showSecondForm){
+      document.body.style.overflow = "hidden";
+    }
+    else{
+      document.body.style.overflow = "auto";
+    }
+  })
+
   const handleCarChange = (e) => {
     const carName = e.target.value;
     const car = carModels.find((model) => model.name === carName);
@@ -41,11 +50,6 @@ const Form = () => {
     e.preventDefault();
     if (selectedCar && pickupLocation && dropoffLocation) {
       setShowSecondForm(true);
-
-      // Scroll down to the reservation form when it opens
-      setTimeout(() => {
-        secondFormRef.current?.scrollIntoView({ behavior: "smooth" });
-      }, 100);
     }
   };
 
@@ -61,18 +65,21 @@ const Form = () => {
     e.preventDefault();
     setConfirmationMessage("Check your email to confirm order.");
     setShowSecondForm(false);
-
-    // Scroll back up to the main form when the second form is submitted
     setTimeout(() => {
       mainFormRef.current?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   };
 
+  // Close the modal
+  const closeModal = () => {
+    setShowSecondForm(false);
+  };
+
   // Helper function to format the input keys for headings and placeholders
   const formatHeading = (key) => {
     return key
-      .replace(/([A-Z])/g, " $1") // Insert a space before each uppercase letter
-      .replace(/^./, (str) => str.toUpperCase()); // Capitalize the first letter
+      .replace(/([A-Z])/g, " $1")
+      .replace(/^./, (str) => str.toUpperCase());
   };
 
   return (
@@ -171,54 +178,63 @@ const Form = () => {
         </form>
       </section>
 
-      {/* Second Form for Reservation Details */}
+      {/* Second Form Modal */}
       <AnimatePresence>
         {showSecondForm && (
-          <motion.section
-            ref={secondFormRef}
-            className="flex justify-center pt-8 items-center max-w-4xl mx-auto p-4"
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm pt-20"
+            onClick={closeModal} // Close when clicking outside the form
             initial="hidden"
             animate="visible"
             exit="exit"
             variants={formVariants}
           >
-            <form
-              className="bg-white shadow-xl rounded-2xl p-8"
-              onSubmit={handleSecondFormSubmit}
+            <motion.section
+              ref={secondFormRef}
+              className="relative bg-white shadow-xl rounded-2xl max-w-4xl mx-auto p-4 overflow-y-auto max-h-[80vh] w-full"
+              onClick={(e) => e.stopPropagation()} // Prevent modal close when clicking inside
             >
-              <h1 className="text-2xl font-bold p-4">COMPLETE RESERVATION</h1>
-              <h2 className="text-lg font-semibold p-4">{selectedCar.name}</h2>
-              <img
-                src={selectedCar.image}
-                alt={selectedCar.name}
-                className="w-full object-contain mb-4 rounded-lg"
-              />
-              <div className="grid lg:grid-cols-2 md:grid-cols-1">
-                {Object.keys(reservationDetails).map((key) => (
-                  <FormGroup key={key} className="w-full p-4">
-                    <h1 className="font-semibold p-2">{formatHeading(key)}</h1>
-                    <input
-                      className="w-full px-4 py-2 border border-gray-300 rounded text-gray-600 focus:outline-none focus:border-blue-500 transition-all duration-200"
-                      type={key === "email" ? "email" : "text"}
-                      name={key}
-                      placeholder={`Enter your ${formatHeading(key)}`}
-                      value={reservationDetails[key]}
-                      onChange={handleSecondFormChange}
-                      required
-                    />
+              <button
+                className="absolute top-2 right-2 text-xl text-gray-600 hover:text-black"
+                onClick={closeModal}
+              >
+                &times;
+              </button>
+              <form onSubmit={handleSecondFormSubmit}>
+                <h1 className="text-2xl font-bold p-4">COMPLETE RESERVATION</h1>
+                <h2 className="text-lg font-semibold p-4">{selectedCar.name}</h2>
+                <img
+                  src={selectedCar.image}
+                  alt={selectedCar.name}
+                  className="w-full object-contain mb-4 rounded-lg"
+                />
+                <div className="grid lg:grid-cols-2 md:grid-cols-1">
+                  {Object.keys(reservationDetails).map((key) => (
+                    <FormGroup key={key} className="w-full p-4">
+                      <h1 className="font-semibold p-2">{formatHeading(key)}</h1>
+                      <input
+                        className="w-full px-4 py-2 border border-gray-300 rounded text-gray-600 focus:outline-none focus:border-blue-500 transition-all duration-200"
+                        type={key === "email" ? "email" : "text"}
+                        name={key}
+                        placeholder={`Enter your ${formatHeading(key)}`}
+                        value={reservationDetails[key]}
+                        onChange={handleSecondFormChange}
+                        required
+                      />
+                    </FormGroup>
+                  ))}
+                  <FormGroup className="w-full p-8">
+                    <button
+                      type="submit"
+                      className="bg-[#0069D2] text-white px-2 py-4 w-full rounded-full text-center hover:bg-blue-700 transition-all duration-200"
+                    >
+                      RESERVE NOW
+                    </button>
                   </FormGroup>
-                ))}
-                <FormGroup className="w-full p-8">
-                  <button
-                    type="submit"
-                    className="bg-[#0069D2] text-white px-2 py-4 w-full rounded-full text-center hover:bg-blue-700 transition-all duration-200"
-                  >
-                    RESERVE NOW
-                  </button>
-                </FormGroup>
-              </div>
-            </form>
-          </motion.section>
+                </div>
+              </form>
+            </motion.section>
+          </motion.div>
         )}
       </AnimatePresence>
     </>

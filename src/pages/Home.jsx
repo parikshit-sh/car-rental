@@ -1,10 +1,7 @@
 import { Box} from "@mui/material";
 import "../index.css";
-import { useState, useEffect } from "react"; // Use state to handle selected car details
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { carModels } from "../carModel";
-import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,6 +11,7 @@ import Form from "../components/Form";
 import hero from "/src/assets/hero-2.png";
 import mob_hero from "/src/assets/mobile_hero.png"
 import download_app from "/src/assets/download.png"
+import Features from "../components/Features";
 
 const Home = () => {
   const [selectedCar, setSelectedCar] = useState(carModels["0"]); // To store the selected car details
@@ -42,7 +40,6 @@ const Home = () => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Handle the scrolling text animation
     const scrollingText = gsap.utils.toArray(".rail h4");
 
     const tl = horizontalLoop(scrollingText, {
@@ -84,7 +81,8 @@ const Home = () => {
 
   return (
     <>
-      <div className="flex justify-center">
+      <div className="flex justify-center" 
+      id="hero">
         <Box className="flex justify-between max-w-5xl items-center pt-52 flex-col lg:flex-row pb-20">
           <div>
             <motion.div
@@ -195,46 +193,10 @@ const Home = () => {
           )}
         </div>
       </section>
-<About />
-      <section className="flex justify-center items-center pt-20">
-        <div className="max-w-5xl grid lg:grid-cols-2 gap-10 items-center">
-          <div className="lg:ml-36 text-center lg:text-left">
-            <h2 className="text-[#121212] text-4xl lg:text-6xl font-bold">
-              Features
-            </h2>
-            <p
-              className="text-gray-600 text-sm lg:text-base mt-4 max-w-md mx-auto 
-                       lg:mx-0"
-            >
-              We prioritize speed, support, and premium quality to ensure a
-              seamless experience for you.
-            </p>
-          </div>
-        </div>
-      </section>
 
-      <Box className="flex flex-col lg:flex-row justify-center items-center max-w-6xl mx-auto p-10 gap-6">
-        <div className="border-2 border-slate-400 flex flex-col rounded-lg  text-center hover:shadow-xl transition-shadow duration-300 transform  ease-in-out max-w-64 p-20">
-          <LocalShippingIcon className="mb-4 text-black text-xl mx-auto" />
-          <span className="text-2xl font-semibold text-[#121212]">
-            24-hr Delivery
-          </span>
-        </div>
+             <About />
+             <Features />
 
-        <div className="border-2 border-slate-400 flex flex-col rounded-lg text-center hover:shadow-xl transition-shadow duration-300 transform ease-in-out max-w-64 p-16">
-          <SupportAgentIcon className="mb-4 text-black text-5xl mx-auto" />
-          <span className="text-2xl font-semibold text-[#121212]">
-            24/7 Technical Support
-          </span>
-        </div>
-
-        <div className="border-2 flex flex-col border-slate-400 rounded-lg  text-center hover:shadow-xl transition-shadow duration-300 transform ease-in-out max-w-64 p-20">
-          <AttachMoneyIcon className="mb-4 text-black text-5xl mx-auto" />
-          <span className="text-2xl font-semibold text-[#121212]">
-            One Pricing
-          </span>
-        </div>
-      </Box>
       <Box className="flex justify-center items-center p-4 w-full lg:w-10/12 md:w-10/12 mx-auto">
         <div className="down_mob text-center w-full h-64 rounded-2xl p-4">
           <h2 className="text-white text-4xl font-bold pt-10 pb-">

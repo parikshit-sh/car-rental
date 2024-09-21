@@ -17,8 +17,10 @@ const Cars = () => {
           },
         },
       };
+
+      
     return (
-        <div className="px-10 pt-0 lg:pt-10 md:pt-10">
+        <div className="px-10 pt-0 lg:pt-10 md:pt-10 pb-44">
             <motion.h2 className="text-black text-5xl font-semibold pt-32 pl-10" 
                       
                           initial="hidden"
