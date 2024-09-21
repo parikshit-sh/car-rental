@@ -1,4 +1,4 @@
-import { Box} from "@mui/material";
+import { Box } from "@mui/material";
 import "../index.css";
 import { carModels } from "../carModel";
 import { useState, useEffect } from "react";
@@ -9,13 +9,12 @@ import { horizontalLoop } from "../animate";
 import About from "../components/About";
 import Form from "../components/Form";
 import hero from "/src/assets/hero-2.png";
-import mob_hero from "/src/assets/mobile_hero.png"
-import download_app from "/src/assets/download.png"
+import mob_hero from "/src/assets/mobile_hero.png";
+import download_app from "/src/assets/download.png";
 import Features from "../components/Features";
 
 const Home = () => {
   const [selectedCar, setSelectedCar] = useState(carModels["0"]); // To store the selected car details
-
 
   const handleCarChange = (e) => {
     const carName = e.target.value;
@@ -81,8 +80,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="flex justify-center" 
-      id="hero">
+      <div className="flex justify-center" id="hero">
         <Box className="flex justify-between max-w-5xl items-center pt-52 flex-col lg:flex-row pb-20">
           <div>
             <motion.div
@@ -107,9 +105,8 @@ const Home = () => {
               alt="hero-image"
               className="absolute right-0 lg:top-32 hidden lg:block md:block"
             />
-           
           </picture>
-          <img src={mob_hero} className="mob_hero hidden" alt=""/>
+          <img src={mob_hero} className="mob_hero hidden" alt="" />
         </Box>
       </div>
       <div className="scrolling-text">
@@ -119,7 +116,7 @@ const Home = () => {
           <h4>Eco-Friendly</h4>
         </div>
       </div>
-     <Form />
+      <Form />
 
       <section className="flex justify-center pt-32 items-center">
         <div className="mob__app max-w-5xl flex flex-col items-center justify-center">
@@ -177,7 +174,7 @@ const Home = () => {
                   <p className="mt-2">{selectedCar.acceleration}</p>
                   <a
                     href="#book_car"
-                    className="bg-[#0069D2] hover:bg-blue-700 transition-all duration-200 text-white px-2 w-1/2 py-2 mt-4 rounded-full text-center"
+                    className="bg-[#0069D2] hover:bg-[#004ba0] transition-all duration-200 text-white px-2 w-1/2 py-2 mt-4 rounded-full text-center"
                   >
                     Book Now
                   </a>
@@ -194,8 +191,8 @@ const Home = () => {
         </div>
       </section>
 
-             <About />
-             <Features />
+      <About />
+      <Features />
 
       <Box className="flex justify-center items-center p-4 w-full lg:w-10/12 md:w-10/12 mx-auto">
         <div className="down_mob text-center w-full h-64 rounded-2xl p-4">

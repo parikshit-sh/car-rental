@@ -33,17 +33,19 @@ const Navbar = () => {
     <>
       <div className={`off__screenMenu ${isActive ? 'active' : ''}`}>
         <ul>
-          <Link to="/home" onClick={closeMenu}>
-            <li>Home</li>
-          </Link>
-          <Link to="/about" onClick={closeMenu}>
-  <li className="hover:text-[#0069D2] cursor-pointer transition ease-out">About</li>
-</Link>
-          <Link to="/cars" onClick={closeMenu}>
-            <li>Cars</li>
-          </Link>
-          <li onClick={closeMenu}>Contact</li>
-          <li onClick={closeMenu}>Download</li>
+          <li>
+            <Link to="/home" onClick={closeMenu}>Home</Link>
+          </li>
+          <li>
+            <Link to="/about" onClick={closeMenu} className="hover:text-[#0069D2] cursor-pointer transition ease-out">About</Link>
+          </li>
+          <li>
+            <Link to="/cars" onClick={closeMenu}>Cars</Link>
+          </li>
+          <li onClick={closeMenu} className="hover:text-[#0069D2] cursor-pointer transition ease-out">Contact</li>
+          <li>
+            <a href="#" className="btn hover:bg-blue-700 transition-all duration-200" onClick={closeMenu}>Download</a>
+          </li>
         </ul>
       </div>
 
@@ -52,22 +54,27 @@ const Navbar = () => {
           <h2 className="font-bold text-2xl">Rentals</h2>
         </div>
         <ul className="nav__link">
-          <Link to="/home" onClick={closeMenu}>
-            <li className="hover:text-[#0069D2] cursor-pointer transition ease-out"><a href="#hero">Home</a></li>
-          </Link>
-          
-          <Link to="/about" onClick={closeMenu}>
-  <li className="hover:text-[#0069D2] cursor-pointer transition ease-out">About</li>
-</Link>
+  <li>
+    <Link to="/home" onClick={closeMenu} className="hover:text-[#0069D2] cursor-pointer transition ease-out">
+      Home
+    </Link>
+  </li>
+  <li>
+    <Link to="/about" onClick={closeMenu} className="hover:text-[#0069D2] cursor-pointer transition ease-out">
+      About
+    </Link>
+  </li>
+  <li>
+    <Link to="/cars" onClick={closeMenu} className="hover:text-[#0069D2] cursor-pointer transition ease-out">
+      Cars
+    </Link>
+  </li>
+  <li className="hover:text-[#0069D2] cursor-pointer transition ease-out" onClick={closeMenu}>Contact</li>
+  <li>
+    <a href="#" className="btn hover:bg-blue-700 transition-all duration-200" onClick={closeMenu}>Download</a>
+  </li>
+</ul>
 
-          <Link to="/cars" onClick={closeMenu}>
-            <li className="hover:text-[#0069D2] cursor-pointer transition ease-out">Cars</li>
-          </Link>
-          <li className="hover:text-[#0069D2] cursor-pointer transition ease-out" onClick={closeMenu}>Contact</li>
-          <li>
-            <a href="#" className="btn hover:bg-blue-700 ransition-all duration-200" onClick={closeMenu}>Download</a>
-          </li>
-        </ul>
         <div className={`ham__menu ${isActive ? 'active' : ''}`} onClick={handleMenuToggle}>
           <span></span>
           <span></span>

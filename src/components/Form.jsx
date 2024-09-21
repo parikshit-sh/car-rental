@@ -31,14 +31,13 @@ const Form = () => {
     exit: { opacity: 0, y: 50, transition: { duration: 0.5 } },
   };
 
-  useEffect (() => {
-    if (showSecondForm){
+  useEffect(() => {
+    if (showSecondForm) {
       document.body.style.overflow = "hidden";
-    }
-    else{
+    } else {
       document.body.style.overflow = "auto";
     }
-  })
+  }, [showSecondForm]);
 
   const handleCarChange = (e) => {
     const carName = e.target.value;
@@ -84,14 +83,8 @@ const Form = () => {
 
   return (
     <>
-      <section
-        className="flex justify-center pt-32 items-center"
-        ref={mainFormRef}
-      >
-        <form
-          className="bg-white shadow-xl rounded-2xl p-8"
-          onSubmit={handleFirstFormSubmit}
-        >
+      <section className="flex justify-center pt-32 items-center" ref={mainFormRef}>
+        <form className="bg-white shadow-xl rounded-2xl p-8" onSubmit={handleFirstFormSubmit}>
           <h1 className="text-2xl font-bold p-4">Book a Car</h1>
           <div className="grid lg:grid-cols-3 md:grid-cols-2">
             {/* Select Your Car */}
@@ -101,6 +94,8 @@ const Form = () => {
                 className="w-full px-4 py-2 text-gray-600"
                 value={selectedCar?.name || ""}
                 onChange={handleCarChange}
+                id="selectCar"
+                name="selectCar"
               >
                 <option value="" disabled>
                   Select Your Car Model
@@ -120,6 +115,8 @@ const Form = () => {
                 className="w-full px-4 py-2 text-gray-600"
                 value={pickupLocation}
                 onChange={(e) => setPickupLocation(e.target.value)}
+                id="pickupLocation"
+                name="pickupLocation"
               >
                 <option value="" disabled>
                   Select Pick Up Location
@@ -139,6 +136,8 @@ const Form = () => {
                 className="w-full px-8 py-2 text-gray-600"
                 value={dropoffLocation}
                 onChange={(e) => setDropoffLocation(e.target.value)}
+                id="dropoffLocation"
+                name="dropoffLocation"
               >
                 <option value="" disabled>
                   Select Drop Off Location
@@ -154,13 +153,13 @@ const Form = () => {
             {/* Pick-Up Date */}
             <FormGroup className="w-full p-4">
               <h1 className="font-semibold p-2">Pick-Up Date</h1>
-              <input className="text-gray-600" type="date" />
+              <input className="text-gray-600" type="date" id="pickupDate" name="pickupDate" />
             </FormGroup>
 
             {/* Drop-Off Date */}
             <FormGroup className="w-full p-4">
               <h1 className="font-semibold p-2">Drop-Off Date</h1>
-              <input className="text-gray-600" type="date" />
+              <input className="text-gray-600" type="date" id="dropoffDate" name="dropoffDate" />
             </FormGroup>
 
             <FormGroup className="w-full p-8">
@@ -172,9 +171,7 @@ const Form = () => {
               </button>
             </FormGroup>
           </div>
-          {confirmationMessage && (
-            <p className="text-green-500">{confirmationMessage}</p>
-          )}
+          {confirmationMessage && <p className="text-green-500">{confirmationMessage}</p>}
         </form>
       </section>
 
@@ -215,6 +212,7 @@ const Form = () => {
                       <input
                         className="w-full px-4 py-2 border border-gray-300 rounded text-gray-600 focus:outline-none focus:border-blue-500 transition-all duration-200"
                         type={key === "email" ? "email" : "text"}
+                        id={key}
                         name={key}
                         placeholder={`Enter your ${formatHeading(key)}`}
                         value={reservationDetails[key]}
