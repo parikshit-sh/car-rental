@@ -174,7 +174,7 @@ const Home = () => {
                   <p className="mt-2">{selectedCar.acceleration}</p>
                   <a
                     href="#book_car"
-                    className="bg-[#0069D2] hover:bg-[#004ba0] transition-all duration-200 text-white px-2 w-1/2 py-2 mt-4 rounded-full text-center"
+                    className="bg-[#007bff] hover:bg-[#004ba0] transition-all duration-200 text-white px-2 w-1/2 py-2 mt-4 rounded-full text-center"
                   >
                     Book Now
                   </a>

@@ -40,21 +40,21 @@ const Features = () => {
             </p>
             <ul className="features-list text-gray-800 text-left mt-6 space-y-5 mx-auto">
               <li className="flex items-center gap-2">
-                <span className=" rounded-full text-[#0069D2]">✦</span>
+                <span className=" rounded-full text-[#007bff]">✦</span>
                 <span>Fast and reliable service with 24/7 availability.</span>
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-[#0069D2]">✦</span>
+                <span className="text-[#007bff]">✦</span>
                 <span>Wide range of vehicles to suit every need and budget.</span>
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-[#0069D2]">✦</span>
+                <span className="text-[#007bff]">✦</span>
                 <span>Expert maintenance and repair support at your fingertips.</span>
               </li>
             </ul>
 
             <div className="mt-8">
-              <Link to="/home" className="btn bg-[#0069D2] text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300">
+              <Link to="/home" className="btn bg-[#007bff] text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300">
                 Book Your Ride
               </Link>
             </div>
