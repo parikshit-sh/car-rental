@@ -89,13 +89,14 @@ const Form = () => {
           <div className="grid lg:grid-cols-3 md:grid-cols-2">
             {/* Select Your Car */}
             <FormGroup className="w-full p-4">
-              <h1 className="font-semibold p-2">Select Your Car</h1>
+              <label htmlFor="selectCar" className="font-semibold p-2">Select Your Car</label>
               <select
                 className="w-full px-4 py-2 text-gray-600"
                 value={selectedCar?.name || ""}
                 onChange={handleCarChange}
                 id="selectCar"
                 name="selectCar"
+                aria-label="Select Your Car"
               >
                 <option value="" disabled>
                   Select Your Car Model
@@ -110,13 +111,14 @@ const Form = () => {
 
             {/* Pick-Up Location */}
             <FormGroup className="w-full p-4">
-              <h1 className="font-semibold p-2">Pick-Up</h1>
+              <label htmlFor="pickupLocation" className="font-semibold p-2">Pick-Up Location</label>
               <select
                 className="w-full px-4 py-2 text-gray-600"
                 value={pickupLocation}
                 onChange={(e) => setPickupLocation(e.target.value)}
                 id="pickupLocation"
                 name="pickupLocation"
+                aria-label="Pick-Up Location"
               >
                 <option value="" disabled>
                   Select Pick Up Location
@@ -131,13 +133,14 @@ const Form = () => {
 
             {/* Drop-Off Location */}
             <FormGroup className="w-full p-4">
-              <h1 className="font-semibold p-2">Drop-Off</h1>
+              <label htmlFor="dropoffLocation" className="font-semibold p-2">Drop-Off Location</label>
               <select
-                className="w-full px-8 py-2 text-gray-600"
+                className="w-full px-4 py-2 text-gray-600"
                 value={dropoffLocation}
                 onChange={(e) => setDropoffLocation(e.target.value)}
                 id="dropoffLocation"
                 name="dropoffLocation"
+                aria-label="Drop-Off Location"
               >
                 <option value="" disabled>
                   Select Drop Off Location
@@ -152,14 +155,26 @@ const Form = () => {
 
             {/* Pick-Up Date */}
             <FormGroup className="w-full p-4">
-              <h1 className="font-semibold p-2">Pick-Up Date</h1>
-              <input className="text-gray-600" type="date" id="pickupDate" name="pickupDate" />
+              <label htmlFor="pickupDate" className="font-semibold p-2">Pick-Up Date</label>
+              <input
+                className="text-gray-600"
+                type="date"
+                id="pickupDate"
+                name="pickupDate"
+                aria-label="Pick-Up Date"
+              />
             </FormGroup>
 
             {/* Drop-Off Date */}
             <FormGroup className="w-full p-4">
-              <h1 className="font-semibold p-2">Drop-Off Date</h1>
-              <input className="text-gray-600" type="date" id="dropoffDate" name="dropoffDate" />
+              <label htmlFor="dropoffDate" className="font-semibold p-2">Drop-Off Date</label>
+              <input
+                className="text-gray-600"
+                type="date"
+                id="dropoffDate"
+                name="dropoffDate"
+                aria-label="Drop-Off Date"
+              />
             </FormGroup>
 
             <FormGroup className="w-full p-8">
@@ -208,28 +223,27 @@ const Form = () => {
                 <div className="grid lg:grid-cols-2 md:grid-cols-1">
                   {Object.keys(reservationDetails).map((key) => (
                     <FormGroup key={key} className="w-full p-4">
-                      <h1 className="font-semibold p-2">{formatHeading(key)}</h1>
+                      <label htmlFor={key} className="font-semibold p-2">{formatHeading(key)}</label>
                       <input
                         className="w-full px-4 py-2 border border-gray-300 rounded text-gray-600 focus:outline-none focus:border-blue-500 transition-all duration-200"
-                        type={key === "email" ? "email" : "text"}
-                        id={key}
+                        type={key === "email" ? "email" : key === "phoneNumber" ? "tel" : "text"}
                         name={key}
-                        placeholder={`Enter your ${formatHeading(key)}`}
                         value={reservationDetails[key]}
                         onChange={handleSecondFormChange}
-                        required
+                        id={key}
+                        aria-label={formatHeading(key)}
                       />
                     </FormGroup>
                   ))}
-                  <FormGroup className="w-full p-8">
-                    <button
-                      type="submit"
-                      className="bg-[#007bff] text-white px-2 py-4 w-full rounded-full text-center hover:bg-blue-700 transition-all duration-200"
-                    >
-                      RESERVE NOW
-                    </button>
-                  </FormGroup>
                 </div>
+                <FormGroup className="w-full p-4">
+                  <button
+                    type="submit"
+                    className="bg-[#007bff] hover:bg-blue-700 transition-all duration-200 text-white px-2 py-4 w-full rounded-full text-center"
+                  >
+                    CONFIRM RESERVATION
+                  </button>
+                </FormGroup>
               </form>
             </motion.section>
           </motion.div>

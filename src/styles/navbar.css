@@ -102,7 +102,7 @@
   }
   
   .btn {
-    background-color: #007bff; /* Slightly lighter blue for better contrast */
+    background-color: #007bff; 
     color: #fff;
     border-radius: 9999px;
     padding: 10px 2rem;
@@ -157,4 +157,32 @@
       position: relative;
     }
   }
-  
+ 
+button.bg-[#0056b3] {
+  background-color: #0056b3; 
+  color: white;
+}
+
+button:hover {
+  background-color: #004080;
+}
+
+
+a.hover\:text-[#007bff] {
+  color: #0056b3; 
+}
+
+a:hover {
+  color: #ffffff; 
+}
+
+
+div.bg-[#121212] {
+  background-color: #121212; 
+  color: #ffffff; 
+}
+
+
+p {
+  color: #000000; 
+}
