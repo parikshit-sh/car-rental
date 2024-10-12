@@ -85,7 +85,8 @@ const About = () => {
             </div>
           </div>
           <div className="pt-10 flex justify-center lg:justify-start lg:pl-10">
-            <Link to="/cars"><button className="btn hover:bg-blue-700 transition-all duration-200 ease-out">See all cars</button>
+            <Link to="/cars"><button className="btn rounded-lg hover:bg-blue-700 
+            transition-all duration-200 ease-out">See all cars</button>
             </Link>
           </div>
         </motion.div>

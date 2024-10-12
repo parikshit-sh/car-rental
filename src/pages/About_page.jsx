@@ -13,104 +13,119 @@ const About_page = () => {
           y: 0,
           transition: {
             type: "tween",
-            duration: 0.4,
+            duration: 0.6,
             ease: "easeOut",
-            delay: 0.1,
           },
         },
       };
 
+    const staggerChildren = {
+      visible: {
+        transition: {
+          staggerChildren: 0.1,
+        },
+      },
+    };
+
+    // refs and states to manage the start of CountUp animations
+    const countUpRef = useRef(null);
+    const isInView = useInView(countUpRef, { once: true, amount: 0.2 });
+    const [startCount, setStartCount] = useState(false);
     
-      // refs and states to manage the start of CountUp animations
-      const countUpRef = useRef(null);
-      const isInView = useInView(countUpRef, { once: true, amount: 0.6 });
-      const [startCount, setStartCount] = useState(false);
+    // Trigger the count-up animations when the section becomes visible
+    if (isInView && !startCount) {
+      setStartCount(true);
+    }
     
-      // Trigger the count-up animations when the section becomes visible
-      if (isInView && !startCount) {
-        setStartCount(true);
-      }
-    
-      
     return (
-        <div className="px-10 pt-0 lg:pt-10 md:pt-10">
-            <motion.h2 className="text-black text-5xl font-semibold pt-32 pl-10" 
-                      
-                          initial="hidden"
-                          whileInView="visible"
-                          variants={fadeInVariant}
-                          viewport={{ once: true, amount: 0.6 }}>Our Car Servicies</motion.h2>
-            <motion.h2 className="font-semibold text-lg pt-2"    initial="hidden"
-                          whileInView="visible"
-                          variants={fadeInVariant}
-                          viewport={{ once: true, amount: 0.6 }}>
-          <Link to="/home"> <span className="text-black text-lg font-semibold pl-10
-           hover:text-[#0069D2]" >Home</span></Link>/About us</motion.h2>
+        <div className="px-4 md:px-10 pt-10 md:pt-16 max-w-7xl mx-auto">
+            <motion.div 
+              initial="hidden"
+              animate="visible"
+              variants={staggerChildren}
+              className="mb-12"
+            >
+              <motion.h1 
+                className="text-black text-4xl md:text-5xl font-bold mb-3" 
+                variants={fadeInVariant}
+              >
+                Our Car Services
+              </motion.h1>
+              <motion.div 
+                className="flex items-center text-lg"
+                variants={fadeInVariant}
+              >
+                <Link to="/home" className="text-[#0069D2] hover:text-blue-600">Home</Link>
+                <span className="mx-2">/</span>
+                <span className="text-gray-600">About us</span>
+              </motion.div>
+            </motion.div>
             
-            <section
-      className="flex justify-center items-center pt-20"
-    id="about_"
-    >
-      <div className="max-w-5xl grid lg:grid-cols-2 gap-10 items-start">
-        <img src={about_img} alt="" className="w-full p-4" />
-        <motion.div className="p-2 text-center lg:text-left self-start" 
-          initial="hidden"
-          whileInView="visible"
-          variants={fadeInVariant}
-          viewport={{ once: true, amount: 0.6 }}
-          ref={countUpRef}>
-          <h2 className="text-[#121212] text-3xl lg:text-5xl font-bold lg:pt-32">
-            Reliable Car Services
-          </h2>
-          <p className="text-gray-600 text-sm lg:text-md mt-4 max-w-sm mx-auto lg:mx-0 leading-5">
-            We prioritize speed, support, and premium quality to ensure a seamless experience for you.
-            Rent, Repair with ease.
-          </p>
-          <div className="stats text-[#0069D2] pt-8 flex gap-4 justify-evenly">
-            <div>
-              <CountUp
-                className="font-bold text-4xl"
-                end={50}
-                duration={3}
-                start={startCount ? null : 0} // Start count when in view
+            <section className="flex flex-col lg:flex-row items-center justify-between gap-10 mb-20">
+              <motion.img 
+                src={about_img} 
+                alt="About Us" 
+                className="w-full lg:w-1/2 rounded-lg shadow-lg"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6 }}
               />
-              <span className="font-bold text-3xl">+</span>
-              <p className="max-w-10 text-gray-600 font-semibold text-sm">Car Models</p>
-              
-            </div>
-            <div>
-              
-              <CountUp
-                className="font-bold text-4xl"
-                end={110}
-                duration={3}
-                start={startCount ? null : 0}
-                
-              />
-              <span className="font-bold text-3xl">+</span>
-              <p className="max-w-10 text-gray-600 font-semibold text-sm">Rental Outlets</p>
-            </div>
-            <div>
-              <CountUp
-                className="font-bold text-4xl"
-                end={30}
-                duration={3}
-                start={startCount ? null : 0}
-              />
-              <span className="font-bold text-3xl">+</span>
-              <p className="max-w-10 text-gray-600 font-semibold text-sm">Repair Shops</p>
-            </div>
-          </div>
-          <div className="pt-10 flex justify-center lg:justify-start lg:pl-10">
-            <Link to="/cars"><button className="btn hover:bg-blue-700 transition-all duration-200 ease-out">See all cars</button>
-            </Link>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-    <Features />
-      </div>
+              <motion.div 
+                className="w-full lg:w-1/2"
+                initial="hidden"
+                whileInView="visible"
+                variants={staggerChildren}
+                viewport={{ once: true, amount: 0.2 }}
+                ref={countUpRef}
+              >
+                <motion.h2 
+                  className="text-[#121212] text-3xl lg:text-4xl font-bold mb-5"
+                  variants={fadeInVariant}
+                >
+                  Reliable Car Services
+                </motion.h2>
+                <motion.p 
+                  className="text-gray-600 text-lg mb-7"
+                  variants={fadeInVariant}
+                >
+                  We prioritize speed, support, and premium quality to ensure a seamless experience for you.
+                  Rent, Repair with ease.
+                </motion.p>
+                <motion.div 
+                  className="grid grid-cols-3 gap-6 mb-8"
+                  variants={fadeInVariant}
+                >
+                  {[
+                    { end: 50, label: "Car Models" },
+                    { end: 110, label: "Rental Outlets" },
+                    { end: 30, label: "Repair Shops" },
+                  ].map((item, index) => (
+                    <div key={index} className="text-center">
+                      <div className="text-[#0069D2] text-4xl font-bold mb-2">
+                        <CountUp
+                          end={item.end}
+                          duration={3}
+                          start={startCount ? null : 0}
+                        />
+                        <span>+</span>
+                      </div>
+                      <p className="text-gray-600 font-medium">{item.label}</p>
+                    </div>
+                  ))}
+                </motion.div>
+                <motion.div variants={fadeInVariant}>
+                  <Link to="/cars">
+                    <button className="btn rounded-lg hover:bg-blue-700 
+            transition-all duration-200 ease-out">
+                      See all cars
+                    </button>
+                  </Link>
+                </motion.div>
+              </motion.div>
+            </section>
+            <Features />
+        </div>
     );
-  };
-  
-  export default About_page;
+};
+
+export default About_page;

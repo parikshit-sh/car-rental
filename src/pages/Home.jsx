@@ -10,8 +10,9 @@ import About from "../components/About";
 import Form from "../components/Form";
 import hero from "/src/assets/hero-2.png";
 import mob_hero from "/src/assets/mobile_hero.png";
-import download_app from "/src/assets/download.png";
+import download_app from "/src/assets/mobile-app.png";
 import Features from "../components/Features";
+import Testimonials from "../components/Testimonials";
 
 const Home = () => {
   const [selectedCar, setSelectedCar] = useState(carModels["0"]); // To store the selected car details
@@ -174,7 +175,9 @@ const Home = () => {
                   <p className="mt-2">{selectedCar.acceleration}</p>
                   <a
                     href="#book_car"
-                    className="bg-[#007bff] hover:bg-[#004ba0] transition-all duration-200 text-white px-2 w-1/2 py-2 mt-4 rounded-full text-center"
+                    className="btn bg-[#007bff] hover:bg-blue-700
+                     transition-all duration-200 text-white px-2 
+                     w-1/2 py-2 mt-4 rounded-lg text-center"
                   >
                     Book Now
                   </a>
@@ -193,27 +196,39 @@ const Home = () => {
 
       <About />
       <Features />
+      <Testimonials />
 
-      <Box className="flex justify-center items-center p-4 w-full lg:w-10/12 md:w-10/12 mx-auto">
-        <div className="down_mob text-center w-full h-64 rounded-2xl p-4">
-          <h2 className="text-white text-4xl font-bold pt-10 pb-">
+      <Box className="flex flex-col lg:flex-row justify-center mt-24 lg:mb-20
+      items-center p-8 rounded-b-none lg:rounded-b-3xl w-full lg:w-10/12 mx-auto bg-gradient-to-r from-blue-500
+       to-blue-700 rounded-3xl mb overflow-hidden">
+        <div className="text-center lg:text-left lg:w-1/2 lg:pr-8">
+          <h2 className="text-white text-4xl lg:text-5xl font-bold mb-4">
             Drive with Rentals Today
           </h2>
-
-          <p className="text-gray-300">
-            Get the App to explore the world of premium Cars.
+          <p className="text-gray-200 text-lg mb-6">
+            Explore our world of premium cars with our mobile app.
+            Get driving today!
           </p>
           <button
             href="#book_car"
-            className="bg-[white] text-black px-2 py-2 mt-2 lg:w-1/4 lg:mt-8 md:w-1/4 w-full font-semibold rounded-full text-center"
+            className="bg-white
+             text-blue-800 px-8 py-3 text-lg font-semibold rounded-lg
+              hover:bg-blue-100 transition duration-300 ease-in-out transform
+               hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
           >
             Download App
           </button>
         </div>
+        <div className="mt-8 lg:mt-0 lg:w-1/3 bg-transparent rounded-lg">
+          <img 
+            src={download_app} 
+            alt="Download our app" 
+            className="w-full max-w-md mx-auto 
+            object-cover rounded-lg transform hover:scale-105 
+            transition duration-300 ease-in-out" 
+          />
+        </div>
       </Box>
-      <div className="flex justify-center items-center">
-        <img src={download_app} alt="" className="w-96" />
-      </div>
     </>
   );
 };

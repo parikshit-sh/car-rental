@@ -54,7 +54,8 @@ const Features = () => {
             </ul>
 
             <div className="mt-8">
-              <Link to="/home" className="btn bg-[#007bff] text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300">
+              <Link to="/home" className="btn rounded-lg hover:bg-blue-700 
+            transition-all duration-200 ease-out">
                 Book Your Ride
               </Link>
             </div>

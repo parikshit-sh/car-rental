@@ -61,7 +61,7 @@ const Navbar = () => {
           <li>
             <a
               href="#"
-              className="btn hover:bg-blue-700 transition-all duration-200"
+              className="btn rounded-lg hover:bg-blue-700 transition-all duration-200"
               onClick={closeMenu}
             >
               Download
@@ -111,7 +111,7 @@ const Navbar = () => {
           <li>
             <a
               href="#"
-              className="btn hover:bg-blue-700 transition-all duration-200"
+              className="btn rounded-lg hover:bg-blue-700 transition-all duration-200"
               onClick={closeMenu}
             >
               Download
